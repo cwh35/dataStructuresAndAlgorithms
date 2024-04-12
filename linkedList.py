@@ -31,6 +31,23 @@ class LinkedList:
         for data in dataList:
             self.insertAtEnd(data)
 
+    def insertAfterValue(self, dataAfter, dataToInsert):
+        # If there is nothing in the list
+        if self.head is None:
+            return
+        
+        # Check if dataAfter is in the head node
+        if self.head.data == dataAfter:
+            self.head.next = Node(dataToInsert, self.head.next)
+            return
+        
+        iterator = self.head
+        while iterator:
+            if iterator.data == dataAfter:
+                iterator.next = Node(dataToInsert, iterator.next)
+                break
+            iterator = iterator.next
+
     # Get the length of the linked list
     def getLength(self):
         count = 0
@@ -93,13 +110,18 @@ class LinkedList:
 
 if __name__ == '__main__':
     ll = LinkedList()
-    ll.insertAtBeginning(300)
-    ll.insertAtBeginning(234)
-    ll.insertAtBeginning(7)
-    ll.insertAtEnd(10002)
+    ll.insertValues(["banana","mango","grapes","orange"])
     ll.print()
-    ll.insertValues(["Volvo", "BMW", "Ford", "Mazda"])
-    ll.removeAt(2)
-    ll.insertAt(0, "Mercedes")
+    ll.insertAfterValue("mango","apple") # insert apple after mango
     ll.print()
-    print("Length of my linked list:", ll.getLength())
+    # ll = LinkedList()
+    # ll.insertAtBeginning(300)
+    # ll.insertAtBeginning(234)
+    # ll.insertAtBeginning(7)
+    # ll.insertAtEnd(10002)
+    # ll.print()
+    # ll.insertValues(["Volvo", "BMW", "Ford", "Mazda"])
+    # ll.removeAt(2)
+    # ll.insertAt(0, "Mercedes")
+    # ll.print()
+    # print("Length of my linked list:", ll.getLength())
