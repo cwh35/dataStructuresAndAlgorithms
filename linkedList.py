@@ -98,7 +98,7 @@ class LinkedList:
 
     # Insert a value at a specific index
     def insertAt(self, index, data):
-        if index < 0 or index >= self.getLength():
+        if index < 0 or index > self.getLength():
             raise Exception("Invalid Index")
         
         if index == 0:
