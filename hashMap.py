@@ -28,6 +28,14 @@ class HashTable:
     def get(self, key):
         hash = self.getHash(key)
         return self.arr[hash]
+    
+    def __delitem__(self, key):
+        hash = self.getHash(key)
+        self.arr[hash] = None
+
+    def delete(self, key):
+        hash = self.getHash(key)
+        self.arr[hash] = None
 
 if __name__ == '__main__':
     table = HashTable()
@@ -39,4 +47,8 @@ if __name__ == '__main__':
     table['june 5'] = 920
     table['july 12'] = 45
     print(table['june 5'])
+    print(table['july 12'])
+    del table['june 5']
+    print(table['june 5'])
+    table.delete('july 12')
     print(table['july 12'])
