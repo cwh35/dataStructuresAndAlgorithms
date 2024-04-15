@@ -13,9 +13,17 @@ class HashTable:
             hash += ord(char) # ord function finds the ASCII value for a character
         return hash % self.MAX # MAX is the size of the hash table
     
+    def __setitem__(self, key, value):
+        hash = self.getHash(key)
+        self.arr[hash] = value
+
     def add(self, key, value):
         hash = self.getHash(key)
         self.arr[hash] = value
+    
+    def __getitem__(self, key):
+        hash = self.getHash(key)
+        return self.arr[hash]
     
     def get(self, key):
         hash = self.getHash(key)
@@ -28,3 +36,7 @@ if __name__ == '__main__':
     table.add('april 15', 200)
     val = table.get('april 15')
     print(val)
+    table['june 5'] = 920
+    table['july 12'] = 45
+    print(table['june 5'])
+    print(table['july 12'])
