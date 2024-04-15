@@ -12,7 +12,19 @@ class HashTable:
         for char in key:
             hash += ord(char) # ord function finds the ASCII value for a character
         return hash % self.MAX # MAX is the size of the hash table
+    
+    def add(self, key, value):
+        hash = self.getHash(key)
+        self.arr[hash] = value
+    
+    def get(self, key):
+        hash = self.getHash(key)
+        return self.arr[hash]
 
 if __name__ == '__main__':
     table = HashTable()
-    table.getHash('march 6')
+    h = table.getHash('march 6')
+    print(h)
+    table.add('april 15', 200)
+    val = table.get('april 15')
+    print(val)
