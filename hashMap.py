@@ -5,7 +5,7 @@
 class HashTable:
     def __init__(self):
         self.MAX = 100
-        self.arr = [None for i in range(self.MAX)]
+        self.arr = [[] for i in range(self.MAX)]
 
     def getHash(self, key):
         hash = 0
@@ -15,19 +15,41 @@ class HashTable:
     
     def __setitem__(self, key, value):
         hash = self.getHash(key)
-        self.arr[hash] = value
+
+        found = False
+        for index, element in enumerate(self.arr[hash]):
+            if len(element) == 2 and element[0] == key:
+                self.arr[hash][index] = (key, value)
+                found = True
+                break
+        if not found:
+            self.arr[hash].append((key, value))
 
     def add(self, key, value):
         hash = self.getHash(key)
-        self.arr[hash] = value
+
+        found = False
+        for index, element in enumerate(self.arr[hash]):
+            if len(element) == 2 and element[0] == key:
+                self.arr[hash][index] = (key, value)
+                found = True
+                break
+        if not found:
+            self.arr[hash].append((key, value))
     
     def __getitem__(self, key):
         hash = self.getHash(key)
-        return self.arr[hash]
+
+        for element in self.arr[hash]:
+            if element[0] == key:
+                return element[1]
     
     def get(self, key):
         hash = self.getHash(key)
-        return self.arr[hash]
+
+        for element in self.arr[hash]:
+            if element[0] == key:
+                return element[1]
     
     def __delitem__(self, key):
         hash = self.getHash(key)
@@ -39,16 +61,19 @@ class HashTable:
 
 if __name__ == '__main__':
     table = HashTable()
-    h = table.getHash('march 6')
-    print(h)
-    table.add('april 15', 200)
-    val = table.get('april 15')
-    print(val)
-    table['june 5'] = 920
-    table['july 12'] = 45
-    print(table['june 5'])
-    print(table['july 12'])
-    del table['june 5']
-    print(table['june 5'])
-    table.delete('july 12')
-    print(table['july 12'])
+    # h = table.getHash('march 6')
+    # print(h)
+    # table.add('april 15', 200)
+    # val = table.get('april 15')
+    # print(val)
+    # table['june 5'] = 920
+    # table['july 12'] = 45
+    # print(table['june 5'])
+    # print(table['july 12'])
+    # del table['june 5']
+    # print(table['june 5'])
+    # table.delete('july 12')
+    # print(table['july 12'])
+    table.add('march 6', 310)
+    table['march 17'] = 420
+    print(table['march 6'])
