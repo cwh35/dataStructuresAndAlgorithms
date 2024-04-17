@@ -1,4 +1,8 @@
-from linkedList import Node, LinkedList
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from data_structures.linkedList import Node, LinkedList
 
 def test_node():
     node = Node(1)

@@ -1,4 +1,8 @@
-from hashMap import HashTable
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from data_structures.hashMap import HashTable
 
 def test_getHash():
     table = HashTable()
