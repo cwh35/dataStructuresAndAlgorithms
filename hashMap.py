@@ -53,11 +53,17 @@ class HashTable:
     
     def __delitem__(self, key):
         hash = self.getHash(key)
-        self.arr[hash] = None
+        
+        for index, element in enumerate(self.arr[hash]):
+            if element[0] == key:
+                del self.arr[hash][index]
 
     def delete(self, key):
         hash = self.getHash(key)
-        self.arr[hash] = None
+        
+        for index, element in enumerate(self.arr[hash]):
+            if element[0] == key:
+                del self.arr[hash][index]
 
 if __name__ == '__main__':
     table = HashTable()
@@ -76,4 +82,7 @@ if __name__ == '__main__':
     # print(table['july 12'])
     table.add('march 6', 310)
     table['march 17'] = 420
+    del table['march 6']
     print(table['march 6'])
+    table.delete('march 17')
+    print(table['march 17'])
