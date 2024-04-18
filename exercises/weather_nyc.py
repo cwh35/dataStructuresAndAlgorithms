@@ -55,3 +55,20 @@ print("Temperature on January 9th:", hashMap['Jan 9'])
 
 # ii) get temp on January 4th
 print("Temperature on January 4th:", hashMap['Jan 4'])
+
+# 3 - poem.txt contains the poem 'Road not taken' by Robert Frost.
+# Read in every word and keep track its count. Output the word count
+
+words = {}
+
+with open('poem.txt', 'r') as f:
+    for line in f:
+        word = line.split(' ')
+        for w in word:
+            w = w.replace('\n', '')
+            if w in words:
+                words[w] += 1
+            else:
+                words[w] = 1
+
+print(words)
