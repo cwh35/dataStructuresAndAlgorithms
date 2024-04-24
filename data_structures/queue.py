@@ -33,6 +33,9 @@ class Queue:
         self.queue.appendleft(value)
 
     def dequeue(self): # removing an element from the queue
+        if len(self.queue) == 0:
+            print("Queue is empty")
+            return
         return self.queue.pop()
     
     def isEmpty(self):
@@ -40,3 +43,6 @@ class Queue:
     
     def size(self):
         return len(self.queue)
+    
+    def front(self):
+        return self.queue[-1]
