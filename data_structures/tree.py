@@ -1,8 +1,10 @@
 # Data Structure - Tree
+# works in a hierarchical structure
 
 class TreeNode:
-    def __init__(self, data):
+    def __init__(self, data, designation):
         self.data = data
+        self.designation = designation
         self.children = []
         self.parent = None
 
@@ -18,39 +20,27 @@ class TreeNode:
             p = p.parent
         return level
 
-    def printTree(self):
-        spaces = ' ' * self.getLevel() * 3
-        prefix = spaces + "|__" if self.parent else ""
-        print(prefix + self.data)
-        if self.children:
-            for child in self.children:
-                child.printTree()
+    def printTree(self, type):
+        if type == "name":
+            spaces = ' ' * self.getLevel() * 3
+            prefix = spaces + "|__" if self.parent else ""
+            print(prefix + self.data)
+            if self.children:
+                for child in self.children:
+                    child.printTree("name")
+        elif type == "designation":
+            spaces = ' ' * self.getLevel() * 3
+            prefix = spaces + "|__" if self.parent else ""
+            print(prefix + self.designation)
+            if self.children:
+                for child in self.children:
+                    child.printTree("designation")
+        elif type == "both":
+            spaces = ' ' * self.getLevel() * 3
+            prefix = spaces + "|__" if self.parent else ""
+            print(prefix + self.data + " (" + self.designation + ")")
+            if self.children:
+                for child in self.children:
+                    child.printTree("both")
 
-def buildProductTree():
-    root = TreeNode("Electronics")
-
-    laptop = TreeNode("Laptop")
-    laptop.addChild(TreeNode("Mac"))
-    laptop.addChild(TreeNode("Surface"))
-    laptop.addChild(TreeNode("Thinkpad"))
-
-    cellphone = TreeNode("Cell Phone")
-    cellphone.addChild(TreeNode("iPhone"))
-    cellphone.addChild(TreeNode("Google Pixel"))
-    cellphone.addChild(TreeNode("Samsung Galaxy"))
-
-    tv = TreeNode("TV")
-    tv.addChild(TreeNode("Samsung"))
-    tv.addChild(TreeNode("LG"))
-
-    root.addChild(laptop)
-    root.addChild(cellphone)
-    root.addChild(tv)
-
-    return root
-
-
-if __name__ == '__main__':
-    root = buildProductTree()
-    root.printTree()
     
