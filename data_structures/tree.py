@@ -42,5 +42,33 @@ class TreeNode:
             if self.children:
                 for child in self.children:
                     child.printTree("both")
+class TreeNode2:
+    def __init__(self, data):
+        self.data = data
+        self.children = []
+        self.parent = None
+
+    def addChild(self, child):
+        child.parent = self # child is an instance of TreeNode, it will have a parent property, i want to set that parent property to self
+        self.children.append(child)
+
+    def getLevel(self):
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent
+        return level
+
+    def printTree(self, level):
+        if self.getLevel() > level:
+            return
+        spaces = ' ' * self.getLevel() * 3
+        prefix = spaces + "|__" if self.parent else ""
+        print(prefix + self.data)
+        if self.children:
+            for child in self.children:
+                child.printTree(level)
+
 
     
