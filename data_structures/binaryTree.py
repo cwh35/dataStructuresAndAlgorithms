@@ -29,3 +29,68 @@ class BinarySearchTreeNode:
         self.data = data
         self.left = None
         self.right = None
+
+    def addChild(self, data):
+        # need to check value first
+        if data == self.data: # if the value already exists
+            return
+        
+        if data < self.data:
+            # add data to the left
+            if self.left: # if left element has a value (not a leaf node)
+                self.left.addChild(data)
+            else:
+                # left node is empty
+                self.left = BinarySearchTreeNode(data)
+        else:
+            # add data to the right
+            if self.right:
+                self.right.addChild(data)
+            else:
+                self.right = BinarySearchTreeNode(data)
+
+    def inOrderTraversal(self):
+        elements = []
+
+        # visit left tree
+        if self.left:
+            elements += self.left.inOrderTraversal()
+        # visit root node
+        elements.append(self.data)
+
+        # visit right tree
+        if self.right:
+            elements += self.right.inOrderTraversal()
+
+        return elements
+    
+    def search(self, value):
+        if self.data == value:
+            return True
+        
+        if value < self.data:
+            # value might be in left subtree
+            if self.left:
+                return self.left.search(value)
+            else:
+                return False # value does not exist in tree
+        if value > self.data:
+            # value might be in right subtree
+            if self.right:
+                return self.right.search(value)
+            else:
+                return False # value does not exist in tree
+    
+def buildTree(elements):
+    root = BinarySearchTreeNode(elements[0])
+
+    for i in range(1, len(elements)):
+        root.addChild(elements[i])
+    return root
+    
+if __name__ == '__main__':
+    nums = [17, 4, 1, 20, 9, 23, 18, 34]
+    numsTree = buildTree(nums)
+    print(numsTree.inOrderTraversal()) # should return the list in ascending order
+    print(numsTree.search(20))
+    print(numsTree.search(200))
