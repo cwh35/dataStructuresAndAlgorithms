@@ -49,6 +49,53 @@ class BinarySearchTreeNode:
             else:
                 self.right = BinarySearchTreeNode(data)
 
+    def findMin(self):
+        if self.left is None:
+            return self.data
+        return self.left.findMin()
+    
+    def findMax(self):
+        if self.right is None:
+            return self.data
+        return self.right.findMax()
+    
+    def calculateSum(self):
+        leftSum = self.left.calculateSum() if self.left else 0
+        rightSum = self.right.calculateSum() if self.right else 0
+        return self.data + leftSum + rightSum
+    
+    def preOrderTraversal(self):
+        elements = []
+
+        # visit root node
+        elements.append(self.data)
+
+        # visit left tree
+        if self.left:
+            elements += self.left.preOrderTraversal()
+
+        # visit right tree
+        if self.right:
+            elements += self.right.preOrderTraversal()
+
+        return elements
+    
+    def postOrderTraversal(self):
+        elements = []
+
+        # visit left tree
+        if self.left:
+            elements += self.left.postOrderTraversal()
+
+        # visit right tree
+        if self.right:
+            elements += self.right.postOrderTraversal()
+        
+        # visit root node
+        elements.append(self.data)
+
+        return elements
+
     def inOrderTraversal(self):
         elements = []
 
