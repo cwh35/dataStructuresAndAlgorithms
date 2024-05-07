@@ -127,7 +127,50 @@ class BinarySearchTreeNode:
                 return self.right.search(value)
             else:
                 return False # value does not exist in tree
+            
+    def delete(self, value):
+        if value < self.data: # check root node
+            if self.left:
+                self.left = self.left.delete(value)
+        elif value > self.data: # check root node
+            if self.right:
+                self.right = self.right.delete(value)
+        else:
+            if self.left is None and self.right is None:
+                return None
+            if self.left is None:
+                return self.right
+            if self.right is None:
+                return self.right
+            
+            minValue = self.right.findMin()
+            self.data = minValue
+            self.right = self.right.delete(minValue)
+        
+        return self
     
+    def deleteUsingMax(self, value): # delete an element using max value from left subtree
+        if value < self.data: # check root node
+            if self.left:
+                self.left = self.left.delete(value)
+        elif value > self.data: # check root node
+            if self.right:
+                self.right = self.right.delete(value)
+        else:
+            if self.left is None and self.right is None:
+                return None
+            if self.left is None:
+                return self.right
+            if self.right is None:
+                return self.right
+            
+            maxValue = self.left.findMax()
+            self.data = maxValue
+            self.left = self.left.delete(maxValue)
+        
+        return self
+
+
 def buildTree(elements):
     root = BinarySearchTreeNode(elements[0])
 
@@ -141,3 +184,13 @@ if __name__ == '__main__':
     print(numsTree.inOrderTraversal()) # should return the list in ascending order
     print(numsTree.search(20))
     print(numsTree.search(200))
+
+    numsTree.delete(20)
+    print(numsTree.inOrderTraversal())
+
+    nums2 = [18, 72, 100, 23, 77, 4, 2, 44]
+    numsTree2 = buildTree(nums2)
+
+    print(numsTree2.inOrderTraversal())
+    numsTree2.deleteUsingMax(23)
+    print(numsTree2.inOrderTraversal())
