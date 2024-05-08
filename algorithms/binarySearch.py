@@ -37,7 +37,21 @@ def binarySearch(nums, target):
     return -1
 
 def binarySearchRecursion(nums, target, leftIndex, rightIndex):
-    pass
+    if rightIndex < leftIndex:
+        return -1 
+    
+    middleIndex = (leftIndex + rightIndex) // 2
+    middleNum = nums[middleIndex]
+
+    if middleNum == target:
+        return middleIndex
+    
+    if middleNum < target:
+        leftIndex = middleIndex + 1
+    else:
+        rightIndex = middleIndex - 1
+    
+    return binarySearchRecursion(nums, target, leftIndex, rightIndex)
 
 
 if __name__ == '__main__':
@@ -51,3 +65,6 @@ if __name__ == '__main__':
 
     index3 = linearSearch(numsList, 8393820)
     index4 = binarySearch(numsList, 8393820)
+
+    index5 = binarySearchRecursion(nums, 26, 0, len(nums) - 1)
+    print(f"Index of target: {index5}")
