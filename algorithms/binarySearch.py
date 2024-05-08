@@ -5,7 +5,9 @@
 # Space Complexity: O(1)
 # For each iteration, you divide your search space by 2
 ## iteration k = n / 2^k
+from util import timeIt
 
+@timeIt
 def linearSearch(nums, target):
     # time complexity O(n)
     for i in range(len(nums)):
@@ -13,6 +15,7 @@ def linearSearch(nums, target):
             return i
     return -1
 
+@timeIt
 def binarySearch(nums, target):
     # time complexity O(log n)
     leftIndex = 0
@@ -33,9 +36,18 @@ def binarySearch(nums, target):
 
     return -1
 
+def binarySearchRecursion(nums, target, leftIndex, rightIndex):
+    pass
+
 
 if __name__ == '__main__':
     nums = [7, 13, 15, 26, 29, 40, 44, 50, 80, 83, 92]
 
-    index = binarySearch(nums, 50)
-    print(f"Index of target: {index}")
+    numsList = [i for i in range(1000000)] # for testing performance
+
+    index1 = linearSearch(nums, 50)
+    index2 = binarySearch(nums, 50)
+    print(f"Index of target: {index1}")
+
+    index3 = linearSearch(numsList, 8393820)
+    index4 = binarySearch(numsList, 8393820)
