@@ -41,6 +41,8 @@ def binarySearchRecursion(nums, target, leftIndex, rightIndex):
         return -1 
     
     middleIndex = (leftIndex + rightIndex) // 2
+    if middleIndex >= len(nums) or middleIndex < 0:
+        return -1
     middleNum = nums[middleIndex]
 
     if middleNum == target:
