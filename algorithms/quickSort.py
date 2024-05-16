@@ -34,9 +34,6 @@ def partition(elements, start, end):
     pivotIndex = start
     pivot = elements[pivotIndex]
 
-    start = pivotIndex + 1
-    end = len(elements) - 1
-
     while start < end: # do this until start and end pointers cross
         while start < len(elements) and elements[start] <= pivot:
             start += 1
