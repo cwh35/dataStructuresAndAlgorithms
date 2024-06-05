@@ -51,5 +51,16 @@ def mergeTwoSortedLists(a, b, arr):
 if __name__ == '__main__':
     arr = [12, 11, 13, 5, 6, 7]
 
+    test = [
+        [10, 3, 15, 6, 8, 23, 98, 29],
+        [],
+        [3],
+        [9, 8, 7, 2],
+        [1, 2, 3, 4, 5]
+    ]
+
     mergeSort(arr)
     print(arr)
+    for t in test:
+        mergeSort(t)
+        print(t)
