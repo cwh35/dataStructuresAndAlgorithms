@@ -8,7 +8,7 @@
 
 def mergeSort(arr):
     if len(arr) <= 1:
-        return arr
+        return
     
     mid = len(arr) // 2
 
@@ -16,36 +16,40 @@ def mergeSort(arr):
     right = arr[mid:]
 
     # keep dividing arrays until length is 1
-    left = mergeSort(left)
-    right = mergeSort(right)
+    mergeSort(left)
+    mergeSort(right)
 
-    return mergeTwoSortedLists(left, right)
+    return mergeTwoSortedLists(left, right, arr)
 
-def mergeTwoSortedLists(a, b):
+def mergeTwoSortedLists(a, b, arr):
     sortedList = []
     lenA = len(a)
     lenB = len(b)
 
-    i = j = 0
+    i = j = k = 0
+    # k is index of sorted array "arr"
 
     while i < lenA and j < lenB:
         if a[i] < b[j]:
-            sortedList.append(a[i])
+            arr[k] = a[i]
             i += 1
         else:
-            sortedList.append(b[j])
+            arr[k] = b[j]
             j += 1
+        k += 1
     while i < lenA:
-        sortedList.append(a[i])
+        arr[k] = a[i]
         i += 1
+        k += 1
     while j < lenB:
-        sortedList.append(b[j])
+        arr[k] = b[j]
         j += 1
+        k += 1
     
     return sortedList
 
 if __name__ == '__main__':
     arr = [12, 11, 13, 5, 6, 7]
 
-    print("Given array is", arr)
-    print(mergeSort(arr))
+    mergeSort(arr)
+    print(arr)
