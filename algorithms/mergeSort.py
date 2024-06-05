@@ -22,7 +22,6 @@ def mergeSort(arr):
     return mergeTwoSortedLists(left, right, arr)
 
 def mergeTwoSortedLists(a, b, arr):
-    sortedList = []
     lenA = len(a)
     lenB = len(b)
 
@@ -45,8 +44,6 @@ def mergeTwoSortedLists(a, b, arr):
         arr[k] = b[j]
         j += 1
         k += 1
-    
-    return sortedList
 
 if __name__ == '__main__':
     arr = [12, 11, 13, 5, 6, 7]
